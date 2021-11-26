@@ -22,7 +22,6 @@ defined( 'ABSPATH' ) or die( 'Keep Quit' );
  * Type of display options
  */
 require_once plugin_dir_path( __FILE__ ) . 'includes/conditions.php';
-require_once plugin_dir_path( __FILE__ ) . 'wpx-menu.php';
 
 /**
  * Main Class Start
@@ -94,7 +93,6 @@ if( !class_exists( 'Variation_Price_Display' ) ):
             add_action( 'woocommerce_settings_tabs_variation_price_display', __CLASS__ . '::settings_tab' );
             add_action( 'woocommerce_update_options_variation_price_display', __CLASS__ . '::update_settings' );
             add_filter( 'plugin_action_links_variation-price-display/variation-price-display.php', __CLASS__ . '::settings_link' );
-            add_action( 'admin_menu', __CLASS__ . '::add_sub_menu_vpd' );
         } 
         
         
@@ -166,7 +164,7 @@ if( !class_exists( 'Variation_Price_Display' ) ):
                     'name'     => __( 'Add From', 'variation-price-display' ),
                     'id'       => 'vpd_from_before_min_price',
                     'type'     => 'checkbox',
-                    'desc'     => __( 'Enable it to display From before Minimum Price', 'variation-price-display' ),
+                    'desc'     => __( 'Enable it to display <b><u>From</u></b> before Minimum Price', 'variation-price-display' ),
                     'class'    => 'vpd-from-text',
                     'default' => 'yes',
                 ),   
@@ -175,7 +173,7 @@ if( !class_exists( 'Variation_Price_Display' ) ):
                     'name'     => __( 'Add Up To', 'variation-price-display' ),
                     'id'       => 'vpd_up_to_before_max_price',
                     'type'     => 'checkbox',
-                    'desc'     => __( 'Enable it to display Up To before Maximum Price', 'variation-price-display' ),
+                    'desc'     => __( 'Enable it to display <b><u>Up To</u></b> before Maximum Price', 'variation-price-display' ),
                     'class'    => 'vpd-up-to-text',
                 ),              
 
@@ -217,29 +215,6 @@ if( !class_exists( 'Variation_Price_Display' ) ):
             );
 
             return $links;
-        }
-
-        /*
-         * Add submenu to WPX.
-         *
-         * @return sub menu
-         */
-        public static function add_sub_menu_vpd(){
-
-            if( !class_exists( 'WPX_Menu_Class' ) ):
-                return;
-            endif;
-
-            $parent_slug = 'wpx_settings_menu';
-            $page_title = esc_html__( 'Variation Price Display', 'variation-price-display' );
-		    $menu_title = esc_html__( 'Price Display', 'variation-price-display' );
-		
-		    $settings_link = esc_url( add_query_arg( array(
-			                                         'page' => 'wc-settings',
-			                                         'tab'  => 'variation_price_display',
-			                                         // 'section' => 'woo-variation-gallery'
-		                                         ), admin_url( 'admin.php' ) ) );
-            add_submenu_page( $parent_slug, $page_title, $menu_title, 'manage_options', $settings_link, '', 32 );
         }
 
     }

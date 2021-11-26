@@ -37,6 +37,10 @@ WooCommerce Variation Product Price Display plugin helps you to show variations 
 
 🥳 Show Minimum to Maximum Price
 
+🥳 Show "From" before minimum price
+
+🥳 Show "Up To" before maximum price
+
 
 
 == Installation ==
@@ -61,7 +65,7 @@ Variation Product Price Display for WooCommerce replaces the default Variation p
 
 == Changelog ==
 
-= 1.0.2 [15-11-2021] =
+= 1.0.2 [26-11-2021] =
 * Feature: Enable/ Disable 'From' text before Minimum Price.
 * Feature: Enable/ Disable 'Up To' text before Maximum Price.
 * Dev: Initially selected Minimum Price and From text enabled.
