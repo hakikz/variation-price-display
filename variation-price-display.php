@@ -4,13 +4,13 @@
  * Plugin URI: https://wordpress.org/plugins/variation-price-display
  * Description: Adds lots of advanced options to control how you display the price for your WooCommerce variable products.
  * Author: Hakik Zaman
- * Version: 1.0.2
+ * Version: 1.0.3
  * Domain Path: /languages
  * Requires at least: 5.5
- * Tested up to: 5.8
+ * Tested up to: 5.9
  * Requires PHP: 7.0
  * WC requires at least: 5.5
- * WC tested up to: 5.8
+ * WC tested up to: 6.2.0
  * Text Domain: variation-price-display
  * Author URI: https://github.com/hakikz
  */
@@ -51,12 +51,30 @@ if( !class_exists( 'Variation_Price_Display' ) ):
          */
 
         public static function is_woo_active(){
-            if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) { 
-                return true; 
-            } 
-            else { 
-                return false; 
+
+            $woo_exists = false;
+
+            // Check if `is_plugin_active_for_network` function is not exist then requre plugin.php
+            if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
+              require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
             }
+
+            if ( is_multisite() ) {
+                // this plugin is network activated - Woo must be network activated 
+                if ( is_plugin_active_for_network( plugin_basename(__FILE__) ) ) {
+                    $woo_exists = is_plugin_active_for_network('woocommerce/woocommerce.php') ? true : false; 
+                // this plugin is locally activated - Woo can be network or locally activated 
+                } 
+                else {
+                    $woo_exists = is_plugin_active( 'woocommerce/woocommerce.php')  ? true : false;   
+                }
+            }
+            else {
+              $woo_exists =  is_plugin_active( 'woocommerce/woocommerce.php') ? true : false;     
+            }
+
+            return $woo_exists;
+                
         }
 
         /*

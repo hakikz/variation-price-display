@@ -4,9 +4,9 @@ Tags: price, price display, minimum price, maximum price, variation price, wooco
 Requires PHP: 5.6
 Requires at least: 4.8
 WC requires at least: 5.5
-Tested up to: 5.8
-WC tested up to: 5.8
-Stable tag: 1.0.2
+Tested up to: 5.9
+WC tested up to: 6.2.0
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,11 @@ Variation Product Price Display for WooCommerce replaces the default Variation p
 
 == Changelog ==
 
+= 1.0.3 [12-02-2022] =
+* Fix: Issue in Multisite Variation Price Display and WooCommerce Plugin.
+* Compatibility: Tested with WordPress 5.9 version.
+* Compatibility: Tested with WooCommerce 6.2.0 version.
+
 = 1.0.2 [26-11-2021] =
 * Feature: Enable/ Disable 'From' text before Minimum Price.
 * Feature: Enable/ Disable 'Up To' text before Maximum Price.
@@ -79,6 +84,9 @@ Variation Product Price Display for WooCommerce replaces the default Variation p
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+Multisite Issue resolved. So, Update if you are using Multisite.
 
 = 1.0.1 =
 This version fixes a Single Product page loading related bug. Upgrade immediately.
