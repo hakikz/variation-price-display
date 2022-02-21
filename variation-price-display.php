@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: Variation Product Price Display for WooCommerce
+ * Plugin Name: Variation Price Range Display for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/variation-price-display
  * Description: Adds lots of advanced options to control how you display the price for your WooCommerce variable products.
  * Author: Hakik Zaman
- * Version: 1.0.3
+ * Version: 1.1.0
  * Domain Path: /languages
  * Requires at least: 5.5
  * Tested up to: 5.9
@@ -17,11 +17,6 @@
 
 defined( 'ABSPATH' ) or die( 'Keep Quit' );
 
-/**
- * All display conditions of pricing
- * Type of display options
- */
-require_once plugin_dir_path( __FILE__ ) . 'includes/conditions.php';
 
 /**
  * Main Class Start
@@ -32,18 +27,67 @@ if( !class_exists( 'Variation_Price_Display' ) ):
  
     class Variation_Price_Display {
 
+
+        /*
+         * Version of Plugin.
+         *
+         */
+
+        protected $_version = '1.1.0';
+
         /*
          * Construct of the Class.
          *
          */
+
         public function __construct(){
             if( self::is_woo_active() ){
-                self::init();
+                $this->constants();
+                $this->includes();
+                $this->init();
             }
             else{
                 add_action( 'admin_notices', __CLASS__ . '::admin_notice__error' );
             }
         }
+
+        /*
+         * Version function of VPD.
+         *
+         */
+        public function version() {
+            return esc_attr( $this->_version );
+        }
+
+
+        /*
+         * Bootstraps the class and hooks required actions & filters.
+         *
+         */
+        public function init() {
+
+            // Test Screen
+            add_action('current_screen', array( $this, 'get_screen' ) );
+
+            // Backend Scripts
+            add_action('admin_enqueue_scripts', array( $this, 'backend_scripts' ) );
+
+            // Frontend Scripts
+            add_action('wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
+
+            add_filter( 'plugin_action_links_variation-price-display/variation-price-display.php', array( $this, 'settings_link') );
+        } 
+
+        /*
+         * Get screen object.
+         *
+         */
+        public function get_screen(){
+
+            $screen = get_current_screen();
+            return $screen;
+        }
+
 
         /*
          * Checking WooCommerce is installed and activated or not.
@@ -54,7 +98,7 @@ if( !class_exists( 'Variation_Price_Display' ) ):
 
             $woo_exists = false;
 
-            // Check if `is_plugin_active_for_network` function is not exist then requre plugin.php
+            // Check if `is_plugin_active_for_network` function is not exist then require plugin.php
             if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
               require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
             }
@@ -75,6 +119,47 @@ if( !class_exists( 'Variation_Price_Display' ) ):
 
             return $woo_exists;
                 
+        }
+
+        /*
+         * VPD Frontend Scripts.
+         *
+         */
+        public function frontend_scripts(){
+
+            // Check if it's the single product page. If not, just emtry return before executing the following scripts.
+            if( !is_product() ){
+                return;
+            }
+
+            wp_enqueue_style('vpd-public-style', plugins_url('public/css/vpd-public-style.min.css', __FILE__), array(), VPD_VERSION, false );
+            wp_enqueue_script( 'vpd-public-script', plugins_url('public/js/vpd-public-script.min.js', __FILE__), array('jquery'), VPD_VERSION, true );
+            wp_localize_script( 'vpd-public-script', 'vpd_public_object',
+                array( 
+                    'changeVariationPrice' => VPD_Common::get_options()->change_variation_price,
+                    'hideDefaultPrice' => VPD_Common::get_options()->hide_default_price,
+                )
+            );
+
+        }
+
+        /*
+         * VPD backend Scripts.
+         *
+         */
+        public function backend_scripts(){
+
+            // Check if it's the ?page=woocommerce_page_wc-settings. If not, just empty return before executing the folowing scripts. 
+            if( $this->get_screen()->id != 'woocommerce_page_wc-settings') {
+                return;
+            }
+            wp_enqueue_style( 'vpd-admin-style', plugins_url('admin/css/vpd-admin-style.min.css', __FILE__), array(), VPD_VERSION, false );
+            wp_enqueue_script( 'vpd-admin-script', plugins_url('admin/js/vpd-admin-script.min.js', __FILE__), array('jquery'), VPD_VERSION, true );
+            wp_localize_script( 'vpd-admin-script', 'vpd_admin_object',
+                array( 
+                    'priceType' => VPD_Common::get_options()->price_display_option,
+                )
+            );
         }
 
         /*
@@ -103,106 +188,67 @@ if( !class_exists( 'Variation_Price_Display' ) ):
 
 
         /*
-         * Bootstraps the class and hooks required actions & filters.
+         * Define function of VPD.
          *
          */
-        public static function init() {
-            add_filter( 'woocommerce_settings_tabs_array', __CLASS__ . '::add_settings_tab', 50 );
-            add_action( 'woocommerce_settings_tabs_variation_price_display', __CLASS__ . '::settings_tab' );
-            add_action( 'woocommerce_update_options_variation_price_display', __CLASS__ . '::update_settings' );
-            add_filter( 'plugin_action_links_variation-price-display/variation-price-display.php', __CLASS__ . '::settings_link' );
-        } 
+
+        public function define( $name, $value, $case_insensitive = false ) {
+            if ( ! defined( $name ) ) {
+                define( $name, $value, $case_insensitive );
+            }
+        }
+
+
+        /*
+         * Constants of VPD.
+         *
+         */
+
+        public function constants() {
+            $this->define( 'VPD_PLUGIN_URI', plugin_dir_url( __FILE__ ) );
+            $this->define( 'VPD_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+            $this->define( 'VPD_VERSION', $this->version() );
+            $this->define( 'VPD_PLUGIN_INCLUDE_PATH', trailingslashit( plugin_dir_path( __FILE__ ) . 'includes' ) );
+            $this->define( 'VPD_PLUGIN_DIRNAME', dirname( plugin_basename( __FILE__ ) ) );
+            $this->define( 'VPD_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+            $this->define( 'VPD_PLUGIN_FILE', __FILE__ );
+        }
+
+        /*
+         * Includes of files.
+         *
+         */
+
+        public function includes() {
+
+            /**
+             * All display conditions of pricing
+             * Type of display options
+             */
+            require_once $this->include_path( 'class-vpd-common.php' );
+            require_once $this->include_path( 'conditions.php' );
+
+            /**
+             * Plugin settings fields 
+             */
+            if ( is_admin() ) {
+                require_once $this->include_path( 'class-vpd-custom-fields.php' );
+                require_once $this->include_path( 'class-vpd-admin-settings.php' );
+            }
+
+        }
+
+
+        /*
+         * Function of include path.
+         *
+         */
+        public function include_path( $file = '' ) {
+            $file = ltrim( $file, '/' );
+
+            return VPD_PLUGIN_INCLUDE_PATH . $file;
+        }
         
-        
-        /*
-         * Add a new settings tab to the WooCommerce settings tabs array.
-         *
-         * @param array $settings_tabs Array of WooCommerce setting tabs & their labels, excluding the Subscription tab.
-         * @return array $settings_tabs Array of WooCommerce setting tabs & their labels, including the Subscription tab.
-         */
-        public static function add_settings_tab( $settings_tabs ) {
-            $settings_tabs['variation_price_display'] = __( 'Variation Price Display', 'variation-price-display' );
-            return $settings_tabs;
-        }
-
-
-        /*
-         * Uses the WooCommerce admin fields API to output settings via the @see woocommerce_admin_fields() function.
-         *
-         * @uses woocommerce_admin_fields()
-         * @uses self::get_settings()
-         */
-        public static function settings_tab() {
-            woocommerce_admin_fields( self::get_settings() );
-        }
-
-
-        /*
-         * Uses the WooCommerce options API to save settings via the @see woocommerce_update_options() function.
-         *
-         * @uses woocommerce_update_options()
-         * @uses self::get_settings()
-         */
-        public static function update_settings() {
-            woocommerce_update_options( self::get_settings() );
-        }
-
-
-        /*
-         * Get all the settings for this plugin for @see woocommerce_admin_fields() function.
-         *
-         * @return array Array of settings for @see woocommerce_admin_fields() function.
-         */
-        public static function get_settings() {
-
-            $price_display_option = get_option('vpd_price_types', 'min');
-
-            $settings = array(
-                array(
-                    'name'     => __( 'Variation Pricing Layout', 'variation-price-display' ),
-                    'type'     => 'title',
-                    'desc'     => '',
-                    'id'       => 'vpd_price_display_section_title'
-                ),
-                array(
-                    'name' => __( 'Price types ', 'variation-price-display' ),
-                    'type' => 'radio',
-                    'id'   => 'vpd_price_types',
-                    'required' => true,
-                    'options' => array(
-                        'min' => __( 'Minimum Price ', 'variation-price-display' ), 
-                        'max' => __( 'Maximum Price ', 'variation-price-display' ), 
-                        'min_to_max' => __( 'Minimum to Maximum Price ', 'variation-price-display' ), 
-                        'max_to_min' => __( 'Maximum to Minimum Price ', 'variation-price-display' ), 
-                    ),
-                    'default' => $price_display_option,
-                ),
-
-                array(
-                    'name'     => __( 'Add From', 'variation-price-display' ),
-                    'id'       => 'vpd_from_before_min_price',
-                    'type'     => 'checkbox',
-                    'desc'     => __( 'Enable it to display <b><u>From</u></b> before Minimum Price', 'variation-price-display' ),
-                    'class'    => 'vpd-from-text',
-                    'default' => 'yes',
-                ),   
-
-                array(
-                    'name'     => __( 'Add Up To', 'variation-price-display' ),
-                    'id'       => 'vpd_up_to_before_max_price',
-                    'type'     => 'checkbox',
-                    'desc'     => __( 'Enable it to display <b><u>Up To</u></b> before Maximum Price', 'variation-price-display' ),
-                    'class'    => 'vpd-up-to-text',
-                ),              
-
-                array(
-                     'type' => 'sectionend',
-                     'id' => 'vpd_setting_section_end'
-                )
-            );
-
-            return apply_filters( 'vpd_settings', $settings );
-        }
 
 
         /*
@@ -210,7 +256,7 @@ if( !class_exists( 'Variation_Price_Display' ) ):
          *
          * @return setting link html.
          */
-        public static function settings_link( $links ) {
+        public function settings_link( $links ) {
 
             $parameters = array(
                 'page'  => 'wc-settings',

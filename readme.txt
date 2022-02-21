@@ -1,12 +1,12 @@
-=== Variation Product Price Display for WooCommerce ===
+=== Variation Price Range Display for WooCommerce ===
 Contributors: hakik
-Tags: price, price display, minimum price, maximum price, variation price, woocommerce variation
+Tags: variation price, price range, minimum price, maximum price
 Requires PHP: 5.6
 Requires at least: 4.8
 WC requires at least: 5.5
 Tested up to: 5.9
 WC tested up to: 6.2.0
-Stable tag: 1.0.3
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Adds lots of advanced options to control how you display the price for your WooC
 
 == Description ==
 
-**Variation Product Price Display for WooCommerce** plugin lets you change the price displayed on both the shop page and the single product page. 
+**Variation Price Range Display for WooCommerce** plugin lets you change the price displayed on both the shop page and the single product page. 
 
 By default, variable products on WooCommerce display a range of prices from lowest to highest.
 
@@ -22,7 +22,7 @@ By default, variable products on WooCommerce display a range of prices from lowe
 
 Displaying just a range can make it difficult for customers to figure out what they’ll pay. Fortunately, you can change the price range for variable products in WooCommerce.
 
-WooCommerce Variation Product Price Display plugin helps you to show variations in a more user-friendly way. It allows you to adjust how your variation price ranges display to create a better WooCommerce store.
+WooCommerce Variation Price Range Display plugin helps you to show variations in a more user-friendly way. It allows you to adjust how your variation price ranges display to create a better WooCommerce store.
 
 
 === Excellent Features of this plugin ===
@@ -41,6 +41,10 @@ WooCommerce Variation Product Price Display plugin helps you to show variations 
 
 🥳 Show "Up To" before maximum price
 
+🥳 Change price by selecting variation from dropdown
+
+🥳 Hide default variation price
+
 
 
 == Installation ==
@@ -54,10 +58,13 @@ After downloading the ZIP file,
 
 == Frequently Asked Questions ==
 
-= What is the purpose of the Variation Product Price Display for WooCommerce? =
+= What is the purpose of the Variation Price Range Display for WooCommerce? =
  
-Variation Product Price Display for WooCommerce replaces the default Variation price range in both shop and single product page. You can show Minimum Price, Maximum Price, Minimum to Maximum Price, Maximum to Minimum Price.
+Variation Price Range Display for WooCommerce replaces the default Variation price range in both shop and single product page. You can show Minimum Price, Maximum Price, Minimum to Maximum Price, Maximum to Minimum Price.
 
+= Can change the price according to selected variation? =
+
+Yes, price can be changed by change variaitons from dropdown (on single product page).
 
 == Screenshots ==
 1. Setting link of Plugin.
@@ -65,8 +72,15 @@ Variation Product Price Display for WooCommerce replaces the default Variation p
 
 == Changelog ==
 
+= 1.1.0 [21-02-2022] =
+* Feature: Change price by selecting variation from dropdown.
+* Feature: Disable/Enable default variation price.
+* Dev: Replaced radio button with Dropdown in plugin setting page.
+* Dev: Enhance plugin setting page look and feel.
+* Dev: Code restructured and decentralized to make them cleaner.
+
 = 1.0.3 [12-02-2022] =
-* Fix: Issue in Multisite Variation Price Display and WooCommerce Plugin.
+* Fix: Issue in Multisite, Variation Price Display required WooCommerce message.
 * Compatibility: Tested with WordPress 5.9 version.
 * Compatibility: Tested with WooCommerce 6.2.0 version.
 
@@ -84,6 +98,9 @@ Variation Product Price Display for WooCommerce replaces the default Variation p
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Code restructured and added new features. Please update and enjoy. 
 
 = 1.0.3 =
 Multisite Issue resolved. So, Update if you are using Multisite.

@@ -12,9 +12,9 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 		
 		if($product->is_type( 'variable' )):
 		
-			$price_display_option = get_option('vpd_price_types', 'min');
-			$display_from_before_min_price = get_option('vpd_from_before_min_price', 'yes');
-			$display_up_to_before_max_price = get_option('vpd_up_to_before_max_price', '');
+			$price_display_option = VPD_Common::get_options()->price_display_option;
+			$display_from_before_min_price = VPD_Common::get_options()->display_from_before_min_price;
+			$display_up_to_before_max_price = VPD_Common::get_options()->display_up_to_before_max_price;
 
 			switch ($price_display_option) {
 
