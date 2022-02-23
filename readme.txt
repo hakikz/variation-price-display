@@ -1,12 +1,12 @@
 === Variation Price Range Display for WooCommerce ===
 Contributors: hakik
-Tags: variation price, price range, minimum price, maximum price
+Tags: price, range, minimum price, maximum price
 Requires PHP: 5.6
 Requires at least: 4.8
 WC requires at least: 5.5
 Tested up to: 5.9
 WC tested up to: 6.2.0
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,10 @@ Yes, price can be changed by change variaitons from dropdown (on single product 
 2. Settings from WooCommerce Settings tab.
 
 == Changelog ==
+
+= 1.1.1 [23-02-2022] =
+* Fix: Elementor price change issue.
+* Tweak: Filter parameter.
 
 = 1.1.0 [21-02-2022] =
 * Feature: Change price by selecting variation from dropdown.

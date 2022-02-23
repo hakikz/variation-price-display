@@ -6,9 +6,9 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 
 	add_filter('woocommerce_variable_price_html', 'vpd_get_price_html', 10, 2);
 
-	function vpd_get_price_html( $filter, $price = '' ){
+	function vpd_get_price_html( $price, $product ){
 
-		$product = wc_get_product( get_the_ID() );
+		// $product = wc_get_product( get_the_ID() );
 		
 		if($product->is_type( 'variable' )):
 		
