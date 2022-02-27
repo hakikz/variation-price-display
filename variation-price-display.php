@@ -4,7 +4,7 @@
  * Plugin URI: https://wordpress.org/plugins/variation-price-display
  * Description: Adds lots of advanced options to control how you display the price for your WooCommerce variable products.
  * Author: Hakik Zaman
- * Version: 1.1.1
+ * Version: 1.1.2
  * Domain Path: /languages
  * Requires at least: 5.5
  * Tested up to: 5.9
@@ -33,7 +33,7 @@ if( !class_exists( 'Variation_Price_Display' ) ):
          *
          */
 
-        protected $_version = '1.1.1';
+        protected $_version = '1.1.2';
 
         /*
          * Construct of the Class.

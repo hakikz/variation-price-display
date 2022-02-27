@@ -129,7 +129,16 @@ if ( !class_exists( 'VPD_Admin_Settings' ) ):
                     'desc'     => __( 'Don\'t display default variation price', 'variation-price-display' ),
                     'class'    => 'vpd-up-to-text',
                     'default'   => 'yes',
-                ),            
+                ),
+
+                array(
+                    'name'     => __( 'Hide Reset Link', 'variation-price-display' ),
+                    'id'       => 'vpd_hide_reset_link',
+                    'type'     => 'checkbox',
+                    'desc'     => __( 'Remove "Clear" link on single product page', 'variation-price-display' ),
+                    'class'    => 'vpd-up-to-text',
+                    'default'   => 'no',
+                ),                
 
                 array(
                      'type' => 'sectionend',

@@ -20,6 +20,7 @@ if( !class_exists( 'VPD_Common' ) ):
             $vpd_options['display_up_to_before_max_price'] = get_option('vpd_up_to_before_max_price', '');
             $vpd_options['change_variation_price'] = get_option('vpd_change_price', 'yes');
             $vpd_options['hide_default_price'] = get_option('vpd_hide_default_price', 'yes');
+            $vpd_options['hide_reset_link'] = get_option('vpd_hide_reset_link', 'no');
 
             return (object) apply_filters('vpd_option_fields', $vpd_options);
 

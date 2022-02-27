@@ -5,8 +5,8 @@ Requires PHP: 5.6
 Requires at least: 4.8
 WC requires at least: 5.5
 Tested up to: 5.9
-WC tested up to: 6.2.0
-Stable tag: 1.1.1
+WC tested up to: 6.2.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,30 +22,42 @@ By default, variable products on WooCommerce display a range of prices from lowe
 
 Displaying just a range can make it difficult for customers to figure out what they’ll pay. Fortunately, you can change the price range for variable products in WooCommerce.
 
+For example, instead of showing $49 - $99 for a variation product, you can show "From $49" , or "Upto $99"
+
 WooCommerce Variation Price Range Display plugin helps you to show variations in a more user-friendly way. It allows you to adjust how your variation price ranges display to create a better WooCommerce store.
 
 
 === Excellent Features of this plugin ===
 
-🥳 Different variation price display formats.
+🥳 **Different variation price display formats**
+The Variation Price Display plugin lets WooCommece store owners complete flexibility in displaying variable prices. 
 
-🥳 Display Maximum Price 
+🥳 **Display Highest or Maximum price **
+You might want to display the maximum price instead of a price range. This plugin lets you display only the highest or maximum price for variable products.
 
-🥳 Display Minimum Price 
+🥳 **Display Lowest or Minimum Price**
+This plugin also lets you show only the cheapest or lowest price in WooCommerce variable products, which means you can avoid the price separator.
 
-🥳 Show Maximum to Minimum Price
+🥳 **Show Maximum to Minimum Price**
+Sometimes, the lowest price could be a sample price rather than the actual price. You can use this plugin to show the maximum to the minimum price in that scenario.
 
-🥳 Show Minimum to Maximum Price
+🥳 **Show Minimum to Maximum Price**
+It's a default feature of WooCommece. Still, we have included it in our plugin settings so that you do not have to face any difficulty finding this feature.
 
-🥳 Show "From" before minimum price
+🥳 **Show “From” before the minimum price**
+Instead of the default price range separator, you can use wording like 'From $49', 'Starts at $49', 'From $49 to $99'. Your customers will get a clear view of the product from it.
 
-🥳 Show "Up To" before maximum price
+🥳 **Show “Up To” before the maximum price.**
+This plugin can show the price, indicating that lower price options are also available. For example, you can show it as ‘Up to $99’. 
 
-🥳 Change price by selecting variation from dropdown
+🥳 **Change price by selecting variation from the dropdown**
+Instead of displaying a barely visible price somewhere below the description, it's better to update the main price with the selected variation’s price.
 
-🥳 Hide default variation price
+🥳 **Hide default variation price**
+By default, WooCommerce displays product variation prices in a separator that lists the lowest to the highest price. However, the plugin lets you choose from different options. 
 
-
+🥳 **Remove clear link**
+WooCommerce Product Range Display plugin lets you hide or remove the clear link when you select a variation. Incase you want to show the clear button, you'll find the option on the plugin settings.
 
 == Installation ==
 
@@ -71,6 +83,10 @@ Yes, price can be changed by change variaitons from dropdown (on single product 
 2. Settings from WooCommerce Settings tab.
 
 == Changelog ==
+
+= 1.1.2 [28-02-2022] =
+* Feature: Option for enable/disable clear link.
+* Compatibility: Tested with WooCommerce 6.2.1.
 
 = 1.1.1 [23-02-2022] =
 * Fix: Elementor price change issue.

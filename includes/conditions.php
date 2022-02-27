@@ -89,3 +89,21 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 		endif;
 	}
 }
+
+// Reset "Clear" link control
+
+if ( ! function_exists( 'vpd_remove_reset_link' ) ){
+
+	add_filter( 'woocommerce_reset_variations_link', 'vpd_remove_reset_link', 20, 1 );
+
+	function vpd_remove_reset_link( $link ){
+
+		if ( VPD_Common::get_options()->hide_reset_link == 'no' ){
+			return $link;
+		}
+
+		return false;
+
+	}
+
+}
