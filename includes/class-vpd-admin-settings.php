@@ -84,7 +84,7 @@ if ( !class_exists( 'VPD_Admin_Settings' ) ):
                     'type' => 'vpd_select',
                     'id'   => 'vpd_price_types',
                     'required' => true,
-                    'options' => apply_filters( 'vpd_option_list_html', array(
+                    'options' => apply_filters( 'vpd_price_type_option_list', array(
                         'min' => __( 'Minimum Price ', 'variation-price-display' ), 
                         'max' => __( 'Maximum Price ', 'variation-price-display' ), 
                         'min_to_max' => __( 'Minimum to Maximum Price ', 'variation-price-display' ), 
@@ -101,7 +101,7 @@ if ( !class_exists( 'VPD_Admin_Settings' ) ):
                     'id'        => 'vpd_from_before_min_price',
                     'type'      => 'checkbox',
                     'desc'     => __( 'Enable it to display <b><u>From</u></b> before Minimum Price', 'variation-price-display' ),
-                    'class'     => 'vpd-from-text',
+                    'class'     => 'vpd-from-text vpd-checkbox',
                     'default'   => 'yes',
                 ),   
 
@@ -110,7 +110,7 @@ if ( !class_exists( 'VPD_Admin_Settings' ) ):
                     'id'       => 'vpd_up_to_before_max_price',
                     'type'     => 'checkbox',
                     'desc'     => __( 'Enable it to display <b><u>Up To</u></b> before Maximum Price', 'variation-price-display' ),
-                    'class'    => 'vpd-up-to-text',
+                    'class'    => 'vpd-up-to-text vpd-checkbox',
                 ), 
 
                 array(
@@ -118,7 +118,7 @@ if ( !class_exists( 'VPD_Admin_Settings' ) ):
                     'id'       => 'vpd_change_price',
                     'type'     => 'checkbox',
                     'desc'     => __( 'Change price, based on selected variation(s)', 'variation-price-display' ),
-                    'class'    => 'vpd-up-to-text',
+                    'class'    => 'vpd-up-to-text vpd-checkbox',
                     'default'   => 'yes',
                 ), 
 
@@ -127,7 +127,7 @@ if ( !class_exists( 'VPD_Admin_Settings' ) ):
                     'id'       => 'vpd_hide_default_price',
                     'type'     => 'checkbox',
                     'desc'     => __( 'Don\'t display default variation price', 'variation-price-display' ),
-                    'class'    => 'vpd-up-to-text',
+                    'class'    => 'vpd-up-to-text vpd-checkbox',
                     'default'   => 'yes',
                 ),
 
@@ -136,9 +136,18 @@ if ( !class_exists( 'VPD_Admin_Settings' ) ):
                     'id'       => 'vpd_hide_reset_link',
                     'type'     => 'checkbox',
                     'desc'     => __( 'Remove "Clear" link on single product page', 'variation-price-display' ),
-                    'class'    => 'vpd-up-to-text',
+                    'class'    => 'vpd-up-to-text vpd-checkbox',
                     'default'   => 'no',
-                ),                
+                ),    
+
+                array(
+                    'name'     => __( 'Format Sale Price', 'variation-price-display' ),
+                    'id'       => 'vpd_format_sale_price',
+                    'type'     => 'checkbox',
+                    'desc'     => __( 'Show Regular Price and Sale Price Format. <b>For Example:</b> <code>From <del>$40</del> $38 </code>' ),
+                    'class'    => 'vpd-up-to-text vpd-checkbox',
+                    'default'   => 'no',
+                ),            
 
                 array(
                      'type' => 'sectionend',

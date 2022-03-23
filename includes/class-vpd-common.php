@@ -21,6 +21,7 @@ if( !class_exists( 'VPD_Common' ) ):
             $vpd_options['change_variation_price'] = get_option('vpd_change_price', 'yes');
             $vpd_options['hide_default_price'] = get_option('vpd_hide_default_price', 'yes');
             $vpd_options['hide_reset_link'] = get_option('vpd_hide_reset_link', 'no');
+            $vpd_options['format_sale_price'] = get_option('vpd_format_sale_price', 'no');
 
             return (object) apply_filters('vpd_option_fields', $vpd_options);
 

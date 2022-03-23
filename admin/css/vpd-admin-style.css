@@ -9,3 +9,59 @@
 .vpd-table tr th{
   padding-left: 10px;
 }
+
+.vpd-table input[type=checkbox]:checked::before {
+  content: "";
+}
+.vpd-table input[type=checkbox] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.vpd-table input[type=checkbox]:focus {
+  outline: 0;
+  border-color: #a9a9a9;
+  box-shadow: none;
+}
+
+.vpd-table .vpd-checkbox {
+  height: 32px;
+  width: 52px;
+  border-radius: 16px;
+  display: inline-block;
+  position: relative;
+  margin: 0 10px 0 0 ;
+  border: 2px solid #a9a9a9;
+  background: linear-gradient(180deg, #a9a9a9 0%, #a9a9a9 100%);
+  transition: all 0.2s ease;
+}
+
+.vpd-table .vpd-checkbox:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);
+  transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
+}
+
+.vpd-table .vpd-checkbox:checked {
+  border-color: #8012f9;
+  background: linear-gradient(180deg, #8012f9 0%, #8012f9 100%);
+}
+
+.vpd-table .vpd-checkbox:checked:focus {
+  border-color: #8012f9;
+  box-shadow: none;
+}
+
+.vpd-table .vpd-checkbox:checked:after {
+  transform: translatex(20px);
+}

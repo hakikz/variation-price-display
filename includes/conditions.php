@@ -9,42 +9,36 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 	function vpd_get_price_html( $price, $product ){
 
 		// $product = wc_get_product( get_the_ID() );
+
+		// $prices = $product->get_variation_prices( true );
 		
 		if($product->is_type( 'variable' )):
 		
 			$price_display_option = VPD_Common::get_options()->price_display_option;
 			$display_from_before_min_price = VPD_Common::get_options()->display_from_before_min_price;
 			$display_up_to_before_max_price = VPD_Common::get_options()->display_up_to_before_max_price;
+			$format_sale_price = VPD_Common::get_options()->format_sale_price;
 
 			switch ($price_display_option) {
 
 			  case "min":
 
-				if ( $display_from_before_min_price === 'yes' ){
+			  	$before_min_price = ( $display_from_before_min_price === 'yes' ) ? __('From ', 'variation-price-display') : '';
 
-					$prices = __('From ', 'variation-price-display') . wc_price( $product->get_variation_price( 'min' ) );
+			  	// $min_price = wc_price( $product->get_variation_price( 'min' ) );
+			  	$min_price = vpd_format_price( $format_sale_price, 'min', $product );
 
-				}
-				else{
-					
-					$prices = wc_price( $product->get_variation_price( 'min' ) );
-
-				}
+				$prices = apply_filters( 'vpd_prefix_min_price', $before_min_price ) . $min_price;
 				
-
 			    break;
 
 			  case "max":
 
-				if ( $display_up_to_before_max_price === 'yes' ){
+			  	$before_min_price = ( $display_up_to_before_max_price === 'yes' ) ? __('Up To ', 'variation-price-display') : '';
 
-					$prices = __('Up To ', 'variation-price-display') . wc_price( $product->get_variation_price( 'max' ) );
-					
-				}
-				else{
+			  	$max_price = vpd_format_price( $format_sale_price, 'max', $product );
 
-			    	$prices = wc_price( $product->get_variation_price( 'max' ) );
-				}
+				$prices = apply_filters( 'vpd_prefix_max_price', $before_min_price ) . $max_price;
 
 			    break;
 
@@ -78,7 +72,7 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 
 			}
 
-			$vpd_price = apply_filters( 'vpd_woocommerce_variable_price_html', $prices . $product->get_price_suffix(), $product );
+			$vpd_price = apply_filters( 'vpd_woocommerce_variable_price_html', $prices . $product->get_price_suffix(), $product, $price );
 
 			return $vpd_price;
 		
@@ -106,4 +100,23 @@ if ( ! function_exists( 'vpd_remove_reset_link' ) ){
 
 	}
 
+}
+
+// Format Price function
+if ( ! function_exists( 'vpd_format_price' ) ){
+
+	function vpd_format_price( $format, $type, $product  ){
+
+		if( 'yes' === $format ){
+			$formatted_price =  wc_format_sale_price( wc_price( $product->get_variation_regular_price( $type ) ), wc_price( $product->get_variation_sale_price( $type ) ) );
+			$price = apply_filters( 'vpd_formatted_price', $formatted_price, $type, $product );
+		}
+		else{
+			$formatted_price = wc_price( $product->get_variation_price( $type ) );
+			$price = apply_filters( 'vpd_non_formatted_price', $formatted_price, $type, $product );
+		}
+
+		return apply_filters('vpd_format_price_fiter', $price, $type, $product);
+	}
+	
 }

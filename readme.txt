@@ -5,8 +5,8 @@ Requires PHP: 5.6
 Requires at least: 4.8
 WC requires at least: 5.5
 Tested up to: 5.9
-WC tested up to: 6.2.1
-Stable tag: 1.1.2
+WC tested up to: 6.3.1
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ WooCommerce Variation Price Range Display plugin helps you to show variations in
 🥳 **Different variation price display formats**
 The Variation Price Display plugin lets WooCommece store owners complete flexibility in displaying variable prices. 
 
-🥳 **Display Highest or Maximum price **
+🥳 **Display Highest or Maximum price**
 You might want to display the maximum price instead of a price range. This plugin lets you display only the highest or maximum price for variable products.
 
 🥳 **Display Lowest or Minimum Price**
@@ -45,7 +45,7 @@ Sometimes, the lowest price could be a sample price rather than the actual price
 It's a default feature of WooCommece. Still, we have included it in our plugin settings so that you do not have to face any difficulty finding this feature.
 
 🥳 **Show “From” before the minimum price**
-Instead of the default price range separator, you can use wording like 'From $49', 'Starts at $49', 'From $49 to $99'. Your customers will get a clear view of the product from it.
+Instead of the default price range separator, you can use wording like 'From $49'. Your customers will get a clear view of the product from it.
 
 🥳 **Show “Up To” before the maximum price.**
 This plugin can show the price, indicating that lower price options are also available. For example, you can show it as ‘Up to $99’. 
@@ -58,6 +58,9 @@ By default, WooCommerce displays product variation prices in a separator that li
 
 🥳 **Remove clear link**
 WooCommerce Product Range Display plugin lets you hide or remove the clear link when you select a variation. Incase you want to show the clear button, you'll find the option on the plugin settings.
+
+🥳 **Format Sale Price**
+Display crossed regular pice beside the sale price. Attract your customer and let them know about this on-sale product.
 
 == Installation ==
 
@@ -79,16 +82,22 @@ Variation Price Range Display for WooCommerce replaces the default Variation pri
 Yes, price can be changed by change variaitons from dropdown (on single product page).
 
 == Screenshots ==
-1. Setting link of Plugin.
+1. Change price by selecting variation from the dropdown.
 2. Settings from WooCommerce Settings tab.
+3. Before using our plugin and After your shop page will look like.
 
 == Changelog ==
 
-= 1.1.2 [28-02-2022] =
+= 1.1.3 [23-03-2022] =
+* Feature: Option for enable/disable sale price format.
+* Enhancement: Applied toggle rather checkbox.
+* Dev: Added languages folder to translate the plugin.
+
+= 1.1.2 [23-02-2022] =
 * Feature: Option for enable/disable clear link.
 * Compatibility: Tested with WooCommerce 6.2.1.
 
-= 1.1.1 [23-02-2022] =
+= 1.1.1 [28-02-2022] =
 * Fix: Elementor price change issue.
 * Tweak: Filter parameter.
 
