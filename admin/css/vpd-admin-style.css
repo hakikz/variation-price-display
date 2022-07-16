@@ -65,3 +65,57 @@
 .vpd-table .vpd-checkbox:checked:after {
   transform: translatex(20px);
 }
+
+
+/* Setings Page Column Part */
+
+.vpd-setting {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.vpd-setting-sidebar{
+  max-width: 24%;
+  flex: 0 0 24%;
+  margin-left: 2%;
+}
+
+.vpd-setting-content{
+  max-width: 74%;
+  flex: 0 0 74%;
+}
+
+.vpd-setting-sidebar .sideblock{
+  padding: 15px;
+  background-color: #ffffff;
+}
+
+.vpd-setting-sidebar .sideblock h3{
+  color: #8012f9;
+}
+
+.vpd-setting-sidebar .sideblock:not(:first-child){
+  margin-top: 15px;
+}
+
+/* Moblie CSS for Settings Page */
+
+@media screen and (max-width: 767px){
+
+  .vpd-setting {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .vpd-setting-sidebar{
+    max-width: 100%;
+    flex: 0 0 100%;
+    margin-left: 0;
+  }
+
+  .vpd-setting-content{
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+}

@@ -1,12 +1,12 @@
 === Variation Price Display Range for WooCommerce ===
-Contributors: hakik
+Contributors: wpxteam
 Tags: price range, variation price, price display
 Requires PHP: 5.6
 Requires at least: 4.8
 WC requires at least: 5.5
-Tested up to: 5.9
-WC tested up to: 6.3.1
-Stable tag: 1.1.5
+Tested up to: 6.0
+WC tested up to: 6.5.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,11 @@ Displaying just a range can make it difficult for customers to figure out what t
 
 For example, instead of showing $49 - $99 for a variation product, you can show "From $49" , or "Upto $99"
 
-WooCommerce Variation Price Range Display plugin helps you to show variations in a more user-friendly way. It allows you to adjust how your variation price ranges display to create a better WooCommerce store.
+WooCommerce Variation Price Display Range plugin helps you to show variations in a more user-friendly way. It allows you to adjust how your variation price ranges display to create a better WooCommerce store.
+
+
+[Documentation](https://wpxtension.com/doc-category/variation-price-display-range-for-woocommerce/ "Variation Price Display Documentation.") | [Support](https://wpxtension.com/support-ticket "Help & Support.") | [Pro Version](https://wpxtension.com/product/variation-price-display-for-woocommerce/ "Variation Price Display Range for WooCommerce Pro.")
+
 
 
 === Excellent Features of this plugin ===
@@ -62,6 +66,29 @@ WooCommerce Product Range Display plugin lets you hide or remove the clear link 
 🥳 **Format Sale Price**
 Display crossed regular pice beside the sale price. Attract your customer and let them know about this on-sale product.
 
+=== Advanced features of the Variation Price Display plugin ===
+
+✔️✔️✔️ [GET THE ADVANCED VERSION](https://wpxtension.com/product/variation-price-display-for-woocommerce/ "Advanced Version of  Variation Price Display Range for WooCommerce")
+
+🔥 **Advanced Price Types**
+By enabling the premium version, you will get two more price types. Such as- List all variation price and Custom. You can display minimum and maximum price in any format if you select **Custom**. **List all variation price** will display all the prices of each variation.
+
+🔥 **Price Display Condition**
+You can define where you want to apply price display conditions. Price can be displayed on Shop/ Archive page, Single product/ Product description page, or Both Shop and Single product page.
+
+🔥 **Display Discount Badge**
+This option is particularly useful when you want to sell product variations at different prices or offer a discount on specific variations. It'll show a discounted badge when the feature is enabled.
+
+🔥 **Enable / Disable Price for Admin**
+By enabling this option, **Variation Price Display** will be disabled for the admin. This feature makes it easier for admin to view the actual product price range on the shop page.
+
+🔥 **SKU with Variation Name**
+Moreover, the Price Range Display plugin comes with the option to enable to display SKU if the price type is: 'List all variation price'.
+
+=== Try Addons for Elementor & WooCommerce ===
+
+* [Download Unlimited Theme Addon For Elementor and WooCommerce](https://wordpress.org/plugins/unlimited-theme-addons/) 
+
 == Installation ==
 
 After downloading the ZIP file,
@@ -87,6 +114,10 @@ Yes, price can be changed by change variaitons from dropdown (on single product 
 3. Before using our plugin and After your shop page will look like.
 
 == Changelog ==
+
+= 1.2.0 [26-05-2022] =
+* Dev: Structure changed.
+* Compatibility: Tested with WordPress 6.0 version.
 
 = 1.1.5 [22-05-2022] =
 * Fix: Format Sale Price shows if not on sale.

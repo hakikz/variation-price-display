@@ -27,6 +27,30 @@ if( !class_exists( 'VPD_Common' ) ):
 
         }
 
+
+        /**
+         * ====================================================
+         * Admin setting badge
+         * ====================================================
+         */
+
+        public static function check_plugin_state( $plugin_name ){
+
+            include_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+            if (is_plugin_active( $plugin_name.'/'.$plugin_name.'.php' ) ){
+
+                return true;
+
+            }
+            else{
+
+                return false;
+
+            }
+
+        }
+
     }
 
     new VPD_Common();

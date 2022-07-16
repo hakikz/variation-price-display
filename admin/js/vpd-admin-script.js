@@ -1,6 +1,6 @@
 ( function ( $ ) {
 
-    var $minTR, $maxTR, $vpdAdminObject;
+    var $minTR, $maxTR, $customTR, $salePriceTR, $vpdAdminObject;
 
     // Getting VPD Admin Object
     $vpdAdminObject = vpd_admin_object;
@@ -8,6 +8,8 @@
     // Getting <tr> using fields
     $minTR = $( '#vpd_from_before_min_price' ).closest('tr');
     $maxTR = $( '#vpd_up_to_before_max_price' ).closest('tr');
+    $customTR = $( '#vpd_custom_price_text' ).closest('tr');
+    $salePriceTR = $( '#vpd_format_sale_price' ).closest('tr');
 
     // Callback function to display <tr> based on data
     minMaxConditions( $vpdAdminObject.priceType );
@@ -34,16 +36,36 @@
             case 'min':
                 $minTR.show();
                 $maxTR.hide();
+                $customTR.hide();
+                $salePriceTR.show();
                 break;
 
             case 'max':
                 $minTR.hide();
+                $customTR.hide();
                 $maxTR.show();
+                $salePriceTR.show();
+                break;
+
+            case 'custom':
+                $minTR.hide();
+                $customTR.show();
+                $maxTR.hide();
+                $salePriceTR.show();
+                break;
+
+            case 'list_variations':
+                $minTR.hide();
+                $customTR.hide();
+                $maxTR.hide();
+                $salePriceTR.show();
                 break;
 
             default:
                 $minTR.hide();
                 $maxTR.hide();
+                $customTR.hide();
+                $salePriceTR.hide();
 
         }
 

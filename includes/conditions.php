@@ -2,8 +2,6 @@
 
 if ( !function_exists( 'vpd_get_price_html' ) ){
 
-	// add_filter('woocommerce_get_price_html', 'vpd_get_price_html');
-
 	add_filter('woocommerce_variable_price_html', 'vpd_get_price_html', 10, 2);
 
 	function vpd_get_price_html( $price, $product ){
@@ -11,6 +9,12 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 		// $product = wc_get_product( get_the_ID() );
 
 		// $prices = $product->get_variation_prices( true );
+
+		if( apply_filters( 'disable_vpd_price_format', false ) ){
+
+			return $price;
+
+		}
 		
 		if($product->is_type( 'variable' )):
 		
@@ -24,23 +28,21 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 			  case "min":
 
 			  	$before_min_price = ( $display_from_before_min_price === 'yes' ) ? __('From ', 'variation-price-display') : '';
-			  	$after_min_price =  '';
 
 			  	// $min_price = wc_price( $product->get_variation_price( 'min' ) );
 			  	$min_price = vpd_format_price( $format_sale_price, 'min', $product );
 
-				$prices = apply_filters( 'vpd_prefix_min_price', $before_min_price ) . $min_price . apply_filters( 'vpd_suffix_min_price', $after_min_price );
+				$prices = apply_filters( 'vpd_prefix_min_price', $before_min_price ) . $min_price;
 				
 			    break;
 
 			  case "max":
 
 			  	$before_max_price = ( $display_up_to_before_max_price === 'yes' ) ? __('Up To ', 'variation-price-display') : '';
-			  	$after_max_price = '';
 
 			  	$max_price = vpd_format_price( $format_sale_price, 'max', $product );
 
-				$prices = apply_filters( 'vpd_prefix_max_price', $before_max_price ) . $max_price . apply_filters( 'vpd_suffix_max_price', $after_max_price );
+				$prices = apply_filters( 'vpd_prefix_max_price', $before_max_price ) . $max_price;
 
 			    break;
 
@@ -74,7 +76,7 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 
 			}
 
-			$vpd_price = apply_filters( 'vpd_woocommerce_variable_price_html', $prices . $product->get_price_suffix(), $product, $price );
+			$vpd_price = apply_filters( 'vpd_woocommerce_variable_price_html', $prices . $product->get_price_suffix(), $product, $price, $price_display_option );
 
 			return $vpd_price;
 		

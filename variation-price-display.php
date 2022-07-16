@@ -3,16 +3,16 @@
  * Plugin Name: Variation Price Display Range for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/variation-price-display
  * Description: Adds lots of advanced options to control how you display the price for your WooCommerce variable products.
- * Author: Hakik Zaman
- * Version: 1.1.5
+ * Author: WPXtension
+ * Version: 1.2.0
  * Domain Path: /languages
- * Requires at least: 5.5
- * Tested up to: 5.9
+ * Requires at least: 5.8
+ * Tested up to: 6.0
  * Requires PHP: 7.0
  * WC requires at least: 5.5
  * WC tested up to: 6.5.1
  * Text Domain: variation-price-display
- * Author URI: https://github.com/hakikz
+ * Author URI: https://wpxtension.com/
  */
 
 defined( 'ABSPATH' ) or die( 'Keep Quit' );
@@ -33,7 +33,7 @@ if( !class_exists( 'Variation_Price_Display' ) ):
          *
          */
 
-        protected $_version = '1.1.5';
+        protected $_version = '1.1.3';
 
         /*
          * Construct of the Class.
@@ -79,6 +79,12 @@ if( !class_exists( 'Variation_Price_Display' ) ):
             add_action('wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
 
             add_filter( 'plugin_action_links_variation-price-display/variation-price-display.php', array( $this, 'settings_link') );
+
+            // Plugin row meta link
+            add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 4 );
+
+            // Admin settings page
+            add_action( 'woocommerce_init', array( $this, 'init_great_admin' ) );
         } 
 
         /**
@@ -165,8 +171,8 @@ if( !class_exists( 'Variation_Price_Display' ) ):
             if( $this->get_screen()->id != 'woocommerce_page_wc-settings') {
                 return;
             }
-            wp_enqueue_style( 'vpd-admin-style', plugins_url('admin/css/vpd-admin-style.min.css', __FILE__), array(), VPD_VERSION, false );
-            wp_enqueue_script( 'vpd-admin-script', plugins_url('admin/js/vpd-admin-script.min.js', __FILE__), array('jquery'), VPD_VERSION, true );
+            wp_enqueue_style( 'vpd-admin-style', plugins_url('admin/css/vpd-admin-style.css', __FILE__), array(), VPD_VERSION, false );
+            wp_enqueue_script( 'vpd-admin-script', plugins_url('admin/js/vpd-admin-script.js', __FILE__), array('jquery'), VPD_VERSION, true );
             wp_localize_script( 'vpd-admin-script', 'vpd_admin_object',
                 array( 
                     'priceType' => VPD_Common::get_options()->price_display_option,
@@ -245,7 +251,7 @@ if( !class_exists( 'Variation_Price_Display' ) ):
              */
             if ( is_admin() ) {
                 require_once $this->include_path( 'class-vpd-custom-fields.php' );
-                require_once $this->include_path( 'class-vpd-admin-settings.php' );
+                // require_once $this->include_path( 'class-vpd-admin-settings.php' );
             }
 
         }
@@ -272,7 +278,7 @@ if( !class_exists( 'Variation_Price_Display' ) ):
 
             $parameters = array(
                 'page'  => 'wc-settings',
-                'tab'   => 'variation_price_display',
+                'tab'   => 'variation-price-display',
             );
 
             // Build and escape the URL.
@@ -290,11 +296,56 @@ if( !class_exists( 'Variation_Price_Display' ) ):
                 $settings_link
             );
 
+            if( !VPD_Common::check_plugin_state('variation-price-display-pro') ){
+                $pro_link = "<a style='font-weight: bold; color: #8012f9;' href='https://wpxtension.com/product/variation-price-display-for-woocommerce/' target='_blank'>" . __( 'Go Premium' ) . '</a>';
+                array_push( $links, $pro_link );
+            }
+
             return $links;
         }
+
+
+        /**
+        * ====================================================
+        * Plugin row link for plugin listing page
+        * ====================================================
+        **/
+
+        function plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
+ 
+            if ( strpos( $plugin_file, 'variation-price-display.php' ) !== false ) {
+
+                $new_links = array(
+                    'ticket' => '<a href="https://wpxtension.com/submit-a-ticket/" target="_blank" style="font-weight: bold; color: #8012f9;">Help & Support</a>',
+                    'doc' => '<a href="https://wpxtension.com/doc-category/variation-price-display-range-for-woocommerce/" target="_blank">Documentation</a>'
+                );
+                 
+                $plugin_meta = array_merge( $plugin_meta, $new_links );
+
+            }
+             
+            return $plugin_meta;
+        }
+
+
+        public function init_great_admin() {
+
+            // other great admin stuff
+
+            // this is probably in a class constructor or something similar
+            add_filter( 'woocommerce_get_settings_pages', function( $pages ) {
+
+                $pages[] = include( 'includes/class-vpd-admin-settings.php' );
+
+                return $pages;
+
+            } );
+        }
+        
 
     }
 
     new Variation_Price_Display();
 
 endif;
+

@@ -27,6 +27,9 @@ if( !class_exists( 'VPD_Custom_Woo_Fields' ) ):
          *
          */
         public function add_admin_field_vpd_title( $value ){
+
+        	do_action( 'vpd_setting_section_start' );
+
         	if ( ! empty( $value['title'] ) ) {
 				echo '<h2>' . esc_html( $value['title'] ) . '</h2>';
 			}
@@ -35,7 +38,7 @@ if( !class_exists( 'VPD_Custom_Woo_Fields' ) ):
 				echo wp_kses_post( wpautop( wptexturize( $value['desc'] ) ) );
 				echo '</div>';
 			}
-			echo '<table class="form-table vpd-table">' . "\n\n";
+			echo '<table class="form-table '.esc_html( $value['table_class'] ).'">' . "\n\n";
 			if ( ! empty( $value['id'] ) ) {
 				do_action( 'woocommerce_settings_' . sanitize_title( $value['id'] ) );
 			}
@@ -96,11 +99,43 @@ if( !class_exists( 'VPD_Custom_Woo_Fields' ) ):
 		<?php       
 		}
 
-		// Add markup after table starts (for further use)
-		// public function before_table_start(){
-		// 	echo "<thead><tr><td>Test</td></tr></thead>";
-		// }
+		// Add markup before settings page starts
+		public function before_table_start(){
+			echo "
+				<div class=\"vpd-setting\">
 
+					<aside class=\"vpd-setting-sidebar\">
+
+						<div class=\"sideblock\">
+
+							<h3><span class=\"dashicons dashicons-text-page\"></span> " . __('Documentation', 'variation-price-display') . "</h3>
+							<p>" . __('To know more about settings, Please check our <a href="https://wpxtension.com/doc-category/variation-price-display-range-for-woocommerce/" target="_blank">documentation</a>', 'variation-price-display') . "</p>
+
+						</div>
+
+						<div class=\"sideblock\">
+
+							<h3><span class=\"dashicons dashicons-editor-help\"></span> " . __('Help & Support', 'variation-price-display') . "</h3>
+							<p>" . __('Still facing issues with Variation Price Range Display? Please <a href="https://wpxtension.com/submit-a-ticket/" target="_blank">open a ticket.</a>', 'variation-price-display') . "</p>
+
+						</div>
+
+						<div class=\"sideblock\">
+
+							<h3><span class=\"dashicons dashicons-star-filled\"></span> " . __('Love Our Plugin?', 'variation-price-display') . "</h3>
+							<p>" . __('We feel honored when you use our plugin on your site. If you have found our plugin useful and makes you smile, please consider giving us a <a href="https://wordpress.org/support/plugin/variation-price-display/reviews/" target="_blank">5-star rating on WordPress.org</a>. It will inspire us a lot.', 'variation-price-display') . "</p>
+
+						</div>
+
+					</aside>
+
+					<div class=\"vpd-setting-content\">";
+		}
+
+		// Add markup after settings page end
+		public function after_table_end(){
+			echo "</div></div>";
+		}
 
         /*
          * Register all hooks.
@@ -113,8 +148,9 @@ if( !class_exists( 'VPD_Custom_Woo_Fields' ) ):
         	add_action( 'woocommerce_admin_field_vpd_select' , array( $this, 'add_admin_field_vpd_select' ), 99, 1 );
         	add_action( 'woocommerce_admin_field_vpd_title' , array( $this, 'add_admin_field_vpd_title' ), 99, 1 );
 
-        	// Add markup before table starts (for further use)
-        	// add_action( 'woocommerce_settings_vpd_price_display_section_title', array( $this, 'before_table_start' ) );
+        	// Add markup before table starts
+        	add_action( 'woocommerce_settings_variation-price-display', array( $this, 'before_table_start' ) );
+        	add_action( 'woocommerce_after_settings__variation-price-display', array( $this, 'after_table_end' ) );
 
         }
 
