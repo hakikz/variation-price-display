@@ -6,7 +6,7 @@ Requires at least: 4.8
 WC requires at least: 5.5
 Tested up to: 6.0
 WC tested up to: 6.5.1
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,7 +87,7 @@ Moreover, the Price Range Display plugin comes with the option to enable to disp
 
 === Try Addons for Elementor & WooCommerce ===
 
-* [Download Unlimited Theme Addon For Elementor and WooCommerce](https://wordpress.org/plugins/unlimited-theme-addons/) 
+* [Download Unlimited Theme Addon For Elementor and WooCommerce](https://wordpress.org/plugins/unlimited-theme-addons/)
 
 == Installation ==
 
@@ -112,8 +112,14 @@ Yes, price can be changed by change variaitons from dropdown (on single product 
 1. Change price by selecting variation from the dropdown.
 2. Settings from WooCommerce Settings tab.
 3. Before using our plugin and After your shop page will look like.
+4. Advanced tab for Premimum version.
 
 == Changelog ==
+
+= 1.2.1 [31-05-2022] =
+* Fix: Price Change issue on related and upsells product.
+* Fix: Need WooCommerce notice plugin name.
+* Dev: Applied minified version for frontend part.
 
 = 1.2.0 [26-05-2022] =
 * Dev: Structure changed.

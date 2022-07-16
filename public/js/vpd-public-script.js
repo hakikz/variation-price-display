@@ -3,7 +3,7 @@
 	var singleVariation, priceContainer, initPrice, prevPrice, vpdPublicObject;
 
 	singleVariation = $('.single-product .product-type-variable .single_variation_wrap .single_variation');
-	priceContainer = $('.single-product .product-type-variable .price');
+	priceContainer = $('.single-product .product-type-variable .price').not('.single-product .product-type-variable .related .price, .single-product .product-type-variable .upsells .price');;
 	initPrice = prevPrice = priceContainer.html();
 
 	// Receiving object

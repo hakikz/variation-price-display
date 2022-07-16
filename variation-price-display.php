@@ -4,7 +4,7 @@
  * Plugin URI: https://wordpress.org/plugins/variation-price-display
  * Description: Adds lots of advanced options to control how you display the price for your WooCommerce variable products.
  * Author: WPXtension
- * Version: 1.2.0
+ * Version: 1.2.1
  * Domain Path: /languages
  * Requires at least: 5.8
  * Tested up to: 6.0
@@ -33,7 +33,7 @@ if( !class_exists( 'Variation_Price_Display' ) ):
          *
          */
 
-        protected $_version = '1.1.3';
+        protected $_version = '1.2.1';
 
         /*
          * Construct of the Class.
@@ -171,8 +171,8 @@ if( !class_exists( 'Variation_Price_Display' ) ):
             if( $this->get_screen()->id != 'woocommerce_page_wc-settings') {
                 return;
             }
-            wp_enqueue_style( 'vpd-admin-style', plugins_url('admin/css/vpd-admin-style.css', __FILE__), array(), VPD_VERSION, false );
-            wp_enqueue_script( 'vpd-admin-script', plugins_url('admin/js/vpd-admin-script.js', __FILE__), array('jquery'), VPD_VERSION, true );
+            wp_enqueue_style( 'vpd-admin-style', plugins_url('admin/css/vpd-admin-style.min.css', __FILE__), array(), VPD_VERSION, false );
+            wp_enqueue_script( 'vpd-admin-script', plugins_url('admin/js/vpd-admin-script.min.js', __FILE__), array('jquery'), VPD_VERSION, true );
             wp_localize_script( 'vpd-admin-script', 'vpd_admin_object',
                 array( 
                     'priceType' => VPD_Common::get_options()->price_display_option,
@@ -199,7 +199,7 @@ if( !class_exists( 'Variation_Price_Display' ) ):
 
             $link    = esc_url( add_query_arg( $link_args, admin_url( 'plugin-install.php' ) ) );
 
-            $message = wp_kses( __( "<strong>Variation Product Price Display for WooCommerce</strong> is an add-on of ", 'variation-price-display' ), array( 'strong' => array() ) );
+            $message = wp_kses( __( "<strong>Variation Price Display Range for WooCommerce</strong> is an add-on of ", 'variation-price-display' ), array( 'strong' => array() ) );
 
             printf( '<div class="%1$s"><p>%2$s <a class="thickbox open-plugin-details-modal" href="%3$s"><strong>%4$s</strong></a></p></div>', $class, $message, $link, $text );
         }
