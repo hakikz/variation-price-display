@@ -1,4 +1,4 @@
-=== Variation Price Range Display for WooCommerce ===
+=== Variation Price Display Range for WooCommerce ===
 Contributors: hakik
 Tags: price range, variation price, price display
 Requires PHP: 5.6
@@ -6,7 +6,7 @@ Requires at least: 4.8
 WC requires at least: 5.5
 Tested up to: 5.9
 WC tested up to: 6.3.1
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Adds lots of advanced options to control how you display the price for your WooC
 
 == Description ==
 
-**Variation Price Range Display for WooCommerce** plugin lets you change the price displayed on both the shop page and the single product page. 
+**Variation Price Display Range for WooCommerce** plugin lets you change the price displayed on both the shop page and the single product page. 
 
 By default, variable products on WooCommerce display a range of prices from lowest to highest.
 
@@ -73,9 +73,9 @@ After downloading the ZIP file,
 
 == Frequently Asked Questions ==
 
-= What is the purpose of the Variation Price Range Display for WooCommerce? =
+= What is the purpose of the Variation Price Display Range for WooCommerce? =
  
-Variation Price Range Display for WooCommerce replaces the default Variation price range in both shop and single product page. You can show Minimum Price, Maximum Price, Minimum to Maximum Price, Maximum to Minimum Price.
+Variation Price Display Range for WooCommerce replaces the default Variation price range in both shop and single product page. You can show Minimum Price, Maximum Price, Minimum to Maximum Price, Maximum to Minimum Price.
 
 = Can change the price according to selected variation? =
 
@@ -87,6 +87,10 @@ Yes, price can be changed by change variaitons from dropdown (on single product 
 3. Before using our plugin and After your shop page will look like.
 
 == Changelog ==
+
+= 1.1.5 [22-05-2022] =
+* Fix: Format Sale Price shows if not on sale.
+* Compatibility: Tested with WooCommerce 6.5.1 version.
 
 = 1.1.4 [07-05-2022] =
 * Feature: Added suffix filter hook for Minimum and Maximum price.

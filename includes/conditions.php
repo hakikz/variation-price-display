@@ -109,13 +109,30 @@ if ( ! function_exists( 'vpd_format_price' ) ){
 
 	function vpd_format_price( $format, $type, $product  ){
 
-		if( 'yes' === $format ){
-			$formatted_price =  wc_format_sale_price( wc_price( $product->get_variation_regular_price( $type ) ), wc_price( $product->get_variation_sale_price( $type ) ) );
+		switch ( $format ) {
+
+		  case "yes":
+
+		  	if( $product->get_variation_regular_price( $type ) !== $product->get_variation_sale_price( $type ) ){
+
+				$formatted_price =  wc_format_sale_price( wc_price( $product->get_variation_regular_price( $type ) ), wc_price( $product->get_variation_sale_price( $type ) ) );
+			}
+			else{
+
+				$formatted_price = wc_price( $product->get_variation_price( $type ) );
+
+			}
+
 			$price = apply_filters( 'vpd_formatted_price', $formatted_price, $type, $product );
-		}
-		else{
-			$formatted_price = wc_price( $product->get_variation_price( $type ) );
+
+			break;
+
+		  default:
+
+		  	$formatted_price = wc_price( $product->get_variation_price( $type ) );
+
 			$price = apply_filters( 'vpd_non_formatted_price', $formatted_price, $type, $product );
+
 		}
 
 		return apply_filters('vpd_format_price_fiter', $price, $type, $product);
