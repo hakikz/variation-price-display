@@ -24,21 +24,23 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 			  case "min":
 
 			  	$before_min_price = ( $display_from_before_min_price === 'yes' ) ? __('From ', 'variation-price-display') : '';
+			  	$after_min_price =  '';
 
 			  	// $min_price = wc_price( $product->get_variation_price( 'min' ) );
 			  	$min_price = vpd_format_price( $format_sale_price, 'min', $product );
 
-				$prices = apply_filters( 'vpd_prefix_min_price', $before_min_price ) . $min_price;
+				$prices = apply_filters( 'vpd_prefix_min_price', $before_min_price ) . $min_price . apply_filters( 'vpd_suffix_min_price', $after_min_price );
 				
 			    break;
 
 			  case "max":
 
-			  	$before_min_price = ( $display_up_to_before_max_price === 'yes' ) ? __('Up To ', 'variation-price-display') : '';
+			  	$before_max_price = ( $display_up_to_before_max_price === 'yes' ) ? __('Up To ', 'variation-price-display') : '';
+			  	$after_max_price = '';
 
 			  	$max_price = vpd_format_price( $format_sale_price, 'max', $product );
 
-				$prices = apply_filters( 'vpd_prefix_max_price', $before_min_price ) . $max_price;
+				$prices = apply_filters( 'vpd_prefix_max_price', $before_max_price ) . $max_price . apply_filters( 'vpd_suffix_max_price', $after_max_price );
 
 			    break;
 

@@ -1,12 +1,12 @@
 === Variation Price Range Display for WooCommerce ===
 Contributors: hakik
-Tags: price, range, minimum price, maximum price
+Tags: price range, variation price, price display
 Requires PHP: 5.6
 Requires at least: 4.8
 WC requires at least: 5.5
 Tested up to: 5.9
 WC tested up to: 6.3.1
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,10 @@ Yes, price can be changed by change variaitons from dropdown (on single product 
 3. Before using our plugin and After your shop page will look like.
 
 == Changelog ==
+
+= 1.1.4 [07-05-2022] =
+* Feature: Added suffix filter hook for Minimum and Maximum price.
+* Tweak: Replaced variable name `before_min_price` to `before_max_price` for maximum price.
 
 = 1.1.3 [23-03-2022] =
 * Feature: Option for enable/disable sale price format.
