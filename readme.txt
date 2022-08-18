@@ -5,8 +5,8 @@ Requires PHP: 5.6
 Requires at least: 4.8
 WC requires at least: 5.5
 Tested up to: 6.0
-WC tested up to: 6.5.1
-Stable tag: 1.2.1
+WC tested up to: 6.7.0
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,11 @@ Yes, price can be changed by change variaitons from dropdown (on single product 
 4. Advanced tab for Premimum version.
 
 == Changelog ==
+
+= 1.2.2 [14-07-2022] =
+* Fix: Remove prefix(From/UpTo) if same price for all variations.
+* Dev: Added parameters for `disable_vpd_price_format`.
+* Compatibility: Tested with WooCommerce 6.7.0 version.
 
 = 1.2.1 [31-05-2022] =
 * Fix: Price Change issue on related and upsells product.

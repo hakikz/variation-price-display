@@ -8,9 +8,21 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 
 		// $product = wc_get_product( get_the_ID() );
 
-		// $prices = $product->get_variation_prices( true );
+		// Disable VPD if same price for all variations
 
-		if( apply_filters( 'disable_vpd_price_format', false ) ){
+		$variation_prices = $product->get_variation_prices( true );
+
+	    $count  = (int) count( array_unique( $variation_prices['price'] ));
+
+		if( $count === apply_filters('vpd_variation_same_price_count', 1) ){
+
+			return $price;
+
+		}
+
+		// Disable VPD filter
+
+		if( apply_filters( 'disable_vpd_price_format', false, $price, $product ) ){
 
 			return $price;
 
