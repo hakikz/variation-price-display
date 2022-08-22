@@ -3,7 +3,10 @@
 	var singleVariation, priceContainer, initPrice, prevPrice, vpdPublicObject;
 
 	singleVariation = $('.single-product .product-type-variable .single_variation_wrap .single_variation');
-	priceContainer = $('.single-product .product-type-variable .price').not('.single-product .product-type-variable .related .price, .single-product .product-type-variable .upsells .price');;
+	priceContainer = $('.single-product .product-type-variable .price')
+					.not('.single-product .product-type-variable .related .price, .single-product .product-type-variable .upsells .price')
+					.not('.single-product .tc-price-wrap .price') //Extran Product Addons Support
+					.not('.variations .price') //Variation Swatches Support;
 	initPrice = prevPrice = priceContainer.html();
 
 	// Receiving object

@@ -41,7 +41,7 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 
 			  	$before_min_price = ( $display_from_before_min_price === 'yes' ) ? __('From ', 'variation-price-display') : '';
 
-			  	// $min_price = wc_price( $product->get_variation_price( 'min' ) );
+			  	// $min_price = wc_price( $product->get_variation_price( 'min', true ) );
 			  	$min_price = vpd_format_price( $format_sale_price, 'min', $product );
 
 				$prices = apply_filters( 'vpd_prefix_min_price', $before_min_price ) . $min_price;
@@ -60,14 +60,14 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 
 			  case "max_to_min":
 
-			  	if( $product->get_variation_price( 'max' ) === $product->get_variation_price( 'min' ) ){
+			  	if( $product->get_variation_price( 'max', true ) === $product->get_variation_price( 'min', true ) ){
 
-			  		$prices = wc_price( $product->get_variation_price( 'max' ) );
+			  		$prices = wc_price( $product->get_variation_price( 'max', true ) );
 
 			  	}
 			  	else{
 
-			  		$prices = wc_format_price_range($product->get_variation_price( 'max' ) , $product->get_variation_price( 'min' ) );
+			  		$prices = wc_format_price_range($product->get_variation_price( 'max', true ) , $product->get_variation_price( 'min', true ) );
 
 			  	}
 
@@ -75,14 +75,14 @@ if ( !function_exists( 'vpd_get_price_html' ) ){
 
 			  default:
 
-			  	if( $product->get_variation_price( 'max' ) === $product->get_variation_price( 'min' ) ){
+			  	if( $product->get_variation_price( 'max', true ) === $product->get_variation_price( 'min', true ) ){
 
-			  		$prices = wc_price( $product->get_variation_price( 'min' ) );
+			  		$prices = wc_price( $product->get_variation_price( 'min', true ) );
 
 			  	}
 			  	else{
 
-			  		$prices = wc_format_price_range($product->get_variation_price( 'min' ) , $product->get_variation_price( 'max' ) );
+			  		$prices = wc_format_price_range($product->get_variation_price( 'min', true ) , $product->get_variation_price( 'max', true ) );
 			  		
 			  	}
 
@@ -127,9 +127,9 @@ if ( ! function_exists( 'vpd_format_price' ) ){
 
 		  case "yes":
 
-		  	if( $product->get_variation_regular_price( $type ) !== $product->get_variation_sale_price( $type ) ){
+		  	if( $product->get_variation_regular_price( $type, true ) !== $product->get_variation_sale_price( $type, true ) ){
 
-				$formatted_price =  wc_format_sale_price( wc_price( $product->get_variation_regular_price( $type ) ), wc_price( $product->get_variation_sale_price( $type ) ) );
+				$formatted_price =  wc_format_sale_price( wc_price( $product->get_variation_regular_price( $type, true ) ), wc_price( $product->get_variation_sale_price( $type, true ) ) );
 			}
 			else{
 
