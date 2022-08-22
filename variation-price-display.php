@@ -151,7 +151,7 @@ if( !class_exists( 'Variation_Price_Display' ) ):
             }
 
             wp_enqueue_style('vpd-public-style', plugins_url('public/css/vpd-public-style.min.css', __FILE__), array(), VPD_VERSION, false );
-            wp_enqueue_script( 'vpd-public-script', plugins_url('public/js/vpd-public-script.min.js', __FILE__), array('jquery'), VPD_VERSION, true );
+            wp_enqueue_script( 'vpd-public-script', plugins_url('public/js/vpd-public-script.js', __FILE__), array('jquery'), VPD_VERSION, true );
             wp_localize_script( 'vpd-public-script', 'vpd_public_object',
                 array( 
                     'changeVariationPrice' => VPD_Common::get_options()->change_variation_price,
